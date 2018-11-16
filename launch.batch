@@ -1,0 +1,14 @@
+#!/bin/bash -l
+
+#SBATCH --export=NONE
+#SBATCH --output=launch.out
+#SBATCH --account=mwaops
+#SBATCH --clusters=galaxy
+#
+#SBATCH --partition=gpuq
+#SBATCH --gres=gpu:1
+#SBATCH --time=1:00:00
+
+
+export OMP_NUM_THREADS=8
+srun --export=all -n 1 -c 8 ./read_calc_write_model
